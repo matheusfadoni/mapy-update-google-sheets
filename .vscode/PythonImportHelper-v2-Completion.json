@@ -1,0 +1,296 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "cx_Oracle",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "cx_Oracle",
+        "description": "cx_Oracle",
+        "detail": "cx_Oracle",
+        "documentation": {}
+    },
+    {
+        "label": "re",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "re",
+        "description": "re",
+        "detail": "re",
+        "documentation": {}
+    },
+    {
+        "label": "subprocess",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "subprocess",
+        "description": "subprocess",
+        "detail": "subprocess",
+        "documentation": {}
+    },
+    {
+        "label": "Credentials",
+        "importPath": "google.oauth2.service_account",
+        "description": "google.oauth2.service_account",
+        "isExtraImport": true,
+        "detail": "google.oauth2.service_account",
+        "documentation": {}
+    },
+    {
+        "label": "build",
+        "importPath": "googleapiclient.discovery",
+        "description": "googleapiclient.discovery",
+        "isExtraImport": true,
+        "detail": "googleapiclient.discovery",
+        "documentation": {}
+    },
+    {
+        "label": "HttpError",
+        "importPath": "googleapiclient.errors",
+        "description": "googleapiclient.errors",
+        "isExtraImport": true,
+        "detail": "googleapiclient.errors",
+        "documentation": {}
+    },
+    {
+        "label": "listar_planilhas",
+        "kind": 2,
+        "importPath": "criar-txt",
+        "description": "criar-txt",
+        "peekOfCode": "def listar_planilhas():\n    return [f for f in os.listdir() if f.endswith('.xlsx')]\n# Função para juntar todas as planilhas em um único arquivo txt com colunas separadas por \"|\"\n# garantindo que o SKU seja tratado como string e o preço tenha 2 casas decimais\ndef juntar_planilhas_em_txt():\n    arquivos_planilhas = listar_planilhas()\n    with open('produtos.txt', 'w') as arquivo_txt:\n        for planilha in arquivos_planilhas:\n            # Carregar a planilha\n            df = pd.read_excel(planilha, dtype=str)  # Carregar tudo como string",
+        "detail": "criar-txt",
+        "documentation": {}
+    },
+    {
+        "label": "juntar_planilhas_em_txt",
+        "kind": 2,
+        "importPath": "criar-txt",
+        "description": "criar-txt",
+        "peekOfCode": "def juntar_planilhas_em_txt():\n    arquivos_planilhas = listar_planilhas()\n    with open('produtos.txt', 'w') as arquivo_txt:\n        for planilha in arquivos_planilhas:\n            # Carregar a planilha\n            df = pd.read_excel(planilha, dtype=str)  # Carregar tudo como string\n            # Garantir que o preço tenha 2 casas decimais\n            for _, row in df.iterrows():\n                linha_formatada = []\n                for i, item in enumerate(row):",
+        "detail": "criar-txt",
+        "documentation": {}
+    },
+    {
+        "label": "remover_caracteres_invalidos",
+        "kind": 2,
+        "importPath": "gerar-planilhas",
+        "description": "gerar-planilhas",
+        "peekOfCode": "def remover_caracteres_invalidos(valor):\n    if isinstance(valor, str):\n        # Remover todos os caracteres de controle ASCII, como \\x02\n        return re.sub(r'[\\x00-\\x1F\\x7F]', '', valor)\n    return valor\n# Função para executar a query e salvar a planilha\ndef gerar_planilha_por_categoria(categoria, nome_arquivo):\n    try:\n        # Conectar ao banco de dados\n        connection = cx_Oracle.connect(user=db_user, password=db_pass, dsn=dsn)",
+        "detail": "gerar-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "gerar_planilha_por_categoria",
+        "kind": 2,
+        "importPath": "gerar-planilhas",
+        "description": "gerar-planilhas",
+        "peekOfCode": "def gerar_planilha_por_categoria(categoria, nome_arquivo):\n    try:\n        # Conectar ao banco de dados\n        connection = cx_Oracle.connect(user=db_user, password=db_pass, dsn=dsn)\n        print(f\"Conectado ao banco para a categoria: {categoria}\")\n        # Criar um cursor\n        cursor = connection.cursor()\n        # Query para buscar os dados da categoria\n        query = f\"\"\"\n        SELECT COD_ARTICULO, DESCRIPCION, PRECO",
+        "detail": "gerar-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "db_host",
+        "kind": 5,
+        "importPath": "gerar-planilhas",
+        "description": "gerar-planilhas",
+        "peekOfCode": "db_host = \"192.168.1.243\"\ndb_port = 1521\ndb_user = \"users3\"\ndb_pass = \"2022\"\ndb_database = \"mapy\"\n# String de conexão\ndsn = cx_Oracle.makedsn(db_host, db_port, service_name=db_database)\n# Função para remover caracteres inválidos\ndef remover_caracteres_invalidos(valor):\n    if isinstance(valor, str):",
+        "detail": "gerar-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "db_port",
+        "kind": 5,
+        "importPath": "gerar-planilhas",
+        "description": "gerar-planilhas",
+        "peekOfCode": "db_port = 1521\ndb_user = \"users3\"\ndb_pass = \"2022\"\ndb_database = \"mapy\"\n# String de conexão\ndsn = cx_Oracle.makedsn(db_host, db_port, service_name=db_database)\n# Função para remover caracteres inválidos\ndef remover_caracteres_invalidos(valor):\n    if isinstance(valor, str):\n        # Remover todos os caracteres de controle ASCII, como \\x02",
+        "detail": "gerar-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "db_user",
+        "kind": 5,
+        "importPath": "gerar-planilhas",
+        "description": "gerar-planilhas",
+        "peekOfCode": "db_user = \"users3\"\ndb_pass = \"2022\"\ndb_database = \"mapy\"\n# String de conexão\ndsn = cx_Oracle.makedsn(db_host, db_port, service_name=db_database)\n# Função para remover caracteres inválidos\ndef remover_caracteres_invalidos(valor):\n    if isinstance(valor, str):\n        # Remover todos os caracteres de controle ASCII, como \\x02\n        return re.sub(r'[\\x00-\\x1F\\x7F]', '', valor)",
+        "detail": "gerar-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "db_pass",
+        "kind": 5,
+        "importPath": "gerar-planilhas",
+        "description": "gerar-planilhas",
+        "peekOfCode": "db_pass = \"2022\"\ndb_database = \"mapy\"\n# String de conexão\ndsn = cx_Oracle.makedsn(db_host, db_port, service_name=db_database)\n# Função para remover caracteres inválidos\ndef remover_caracteres_invalidos(valor):\n    if isinstance(valor, str):\n        # Remover todos os caracteres de controle ASCII, como \\x02\n        return re.sub(r'[\\x00-\\x1F\\x7F]', '', valor)\n    return valor",
+        "detail": "gerar-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "db_database",
+        "kind": 5,
+        "importPath": "gerar-planilhas",
+        "description": "gerar-planilhas",
+        "peekOfCode": "db_database = \"mapy\"\n# String de conexão\ndsn = cx_Oracle.makedsn(db_host, db_port, service_name=db_database)\n# Função para remover caracteres inválidos\ndef remover_caracteres_invalidos(valor):\n    if isinstance(valor, str):\n        # Remover todos os caracteres de controle ASCII, como \\x02\n        return re.sub(r'[\\x00-\\x1F\\x7F]', '', valor)\n    return valor\n# Função para executar a query e salvar a planilha",
+        "detail": "gerar-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "dsn",
+        "kind": 5,
+        "importPath": "gerar-planilhas",
+        "description": "gerar-planilhas",
+        "peekOfCode": "dsn = cx_Oracle.makedsn(db_host, db_port, service_name=db_database)\n# Função para remover caracteres inválidos\ndef remover_caracteres_invalidos(valor):\n    if isinstance(valor, str):\n        # Remover todos os caracteres de controle ASCII, como \\x02\n        return re.sub(r'[\\x00-\\x1F\\x7F]', '', valor)\n    return valor\n# Função para executar a query e salvar a planilha\ndef gerar_planilha_por_categoria(categoria, nome_arquivo):\n    try:",
+        "detail": "gerar-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "categorias_planilhas",
+        "kind": 5,
+        "importPath": "gerar-planilhas",
+        "description": "gerar-planilhas",
+        "peekOfCode": "categorias_planilhas = {\n    \"CASA/COCINA\": \"Casa Cocina.xlsx\",\n    \"DEPORTES\": \"Deportes.xlsx\",\n    \"COMESTIBLES\": \"Comestibles.xlsx\",\n    \"MODA ROPA Y ACCES.\": \"Modas.xlsx\",\n    \"NIÑOS\": \"Ninos.xlsx\",\n    \"INFORMATICA\": \"Informatica.xlsx\",\n    \"CAMPING/PESCA/FERR/JARD/AUTO\": \"Camping.xlsx\",\n    \"PERFUMERIA\": \"Perfumeria.xlsx\",\n    \"BEBIDAS\": \"Bebidas.xlsx\",",
+        "detail": "gerar-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "informatica_df",
+        "kind": 5,
+        "importPath": "insert-informatica-em-eletronica",
+        "description": "insert-informatica-em-eletronica",
+        "peekOfCode": "informatica_df = pd.read_excel('Informatica.xlsx')\neletronica_df = pd.read_excel('Electronica.xlsx')\n# Insere o conteúdo de Informática dentro de Eletrônica\ncombined_df = pd.concat([eletronica_df, informatica_df], ignore_index=True)\n# Remove SKUs duplicados (assumindo que a primeira coluna é o SKU)\ncombined_df.drop_duplicates(subset=combined_df.columns[0], inplace=True)\n# Salva o resultado na planilha Eletronica.xlsx\ncombined_df.to_excel('Electronica.xlsx', index=False)\n# Deleta a planilha Informatica.xlsx\nos.remove('Informatica.xlsx')",
+        "detail": "insert-informatica-em-eletronica",
+        "documentation": {}
+    },
+    {
+        "label": "eletronica_df",
+        "kind": 5,
+        "importPath": "insert-informatica-em-eletronica",
+        "description": "insert-informatica-em-eletronica",
+        "peekOfCode": "eletronica_df = pd.read_excel('Electronica.xlsx')\n# Insere o conteúdo de Informática dentro de Eletrônica\ncombined_df = pd.concat([eletronica_df, informatica_df], ignore_index=True)\n# Remove SKUs duplicados (assumindo que a primeira coluna é o SKU)\ncombined_df.drop_duplicates(subset=combined_df.columns[0], inplace=True)\n# Salva o resultado na planilha Eletronica.xlsx\ncombined_df.to_excel('Electronica.xlsx', index=False)\n# Deleta a planilha Informatica.xlsx\nos.remove('Informatica.xlsx')\nprint(\"Conteúdo de Informática inserido em Eletrônica, SKUs duplicados removidos e planilha Informática deletada com sucesso!\")",
+        "detail": "insert-informatica-em-eletronica",
+        "documentation": {}
+    },
+    {
+        "label": "combined_df",
+        "kind": 5,
+        "importPath": "insert-informatica-em-eletronica",
+        "description": "insert-informatica-em-eletronica",
+        "peekOfCode": "combined_df = pd.concat([eletronica_df, informatica_df], ignore_index=True)\n# Remove SKUs duplicados (assumindo que a primeira coluna é o SKU)\ncombined_df.drop_duplicates(subset=combined_df.columns[0], inplace=True)\n# Salva o resultado na planilha Eletronica.xlsx\ncombined_df.to_excel('Electronica.xlsx', index=False)\n# Deleta a planilha Informatica.xlsx\nos.remove('Informatica.xlsx')\nprint(\"Conteúdo de Informática inserido em Eletrônica, SKUs duplicados removidos e planilha Informática deletada com sucesso!\")",
+        "detail": "insert-informatica-em-eletronica",
+        "documentation": {}
+    },
+    {
+        "label": "executar_arquivo",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def executar_arquivo(script):\n    try:\n        print(f\"Executando: {script}\")\n        # subprocess para rodar o script Python 3.8 no diretorio especificado\n        subprocess.run([\"python3.8\", os.path.join(diretorio, script)], check=True)\n        print(f\"{script} executado com sucesso.\\n\")\n    except subprocess.CalledProcessError as e:\n        print(f\"Erro ao executar {script}: {e}\")\n# Ordem de execucao dos scripts\nscripts_para_executar = [",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "diretorio",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "diretorio = \"/var/www/html/planilhas-produtos-chatbot\"\n# Funcao para executar um arquivo Python\ndef executar_arquivo(script):\n    try:\n        print(f\"Executando: {script}\")\n        # subprocess para rodar o script Python 3.8 no diretorio especificado\n        subprocess.run([\"python3.8\", os.path.join(diretorio, script)], check=True)\n        print(f\"{script} executado com sucesso.\\n\")\n    except subprocess.CalledProcessError as e:\n        print(f\"Erro ao executar {script}: {e}\")",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "scripts_para_executar",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "scripts_para_executar = [\n    \"gerar-planilhas.py\",  # Primeiro script\n    \"insert-informatica-em-eletronica.py\",  # Segundo script\n    \"subir-planilhas.py\"  # Terceiro script\n]\n# Executar os scripts na ordem\nfor script in scripts_para_executar:\n    executar_arquivo(script)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "limpar_planilha",
+        "kind": 2,
+        "importPath": "subir-planilhas",
+        "description": "subir-planilhas",
+        "peekOfCode": "def limpar_planilha(sheet_id):\n    try:\n        service.spreadsheets().values().clear(\n            spreadsheetId=sheet_id,\n            range=\"Hoja 1\"  # Define a aba e a faixa de células a serem limpas\n        ).execute()\n    except HttpError as e:\n        print(f\"Erro ao limpar a planilha: {e}\")\n# Funcao para carregar os dados de uma planilha Excel local e subir para o Google Sheets\ndef upload_to_google_sheets(filename, sheet_id):",
+        "detail": "subir-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "upload_to_google_sheets",
+        "kind": 2,
+        "importPath": "subir-planilhas",
+        "description": "subir-planilhas",
+        "peekOfCode": "def upload_to_google_sheets(filename, sheet_id):\n    try:\n        # Verifica se o arquivo local existe antes de limpar a planilha no Google Sheets\n        if os.path.exists(filename):\n            # Lê o arquivo Excel\n            df = pd.read_excel(filename, engine='openpyxl')\n            # Substituir valores NaN por strings vazias\n            df = df.fillna('')\n            # Converte o DataFrame para uma lista de listas (necessário para a API do Google Sheets)\n            data = df.values.tolist()",
+        "detail": "subir-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "SCOPES",
+        "kind": 5,
+        "importPath": "subir-planilhas",
+        "description": "subir-planilhas",
+        "peekOfCode": "SCOPES = ['https://www.googleapis.com/auth/spreadsheets']\ncreds = Credentials.from_service_account_file('credentials-automacao-atendimento-zendesk.json', scopes=SCOPES)\nservice = build('sheets', 'v4', credentials=creds)\n# IDs das planilhas no Google Sheets para cada setor\nspreadsheet_ids = {\n    'BEBIDAS': '1Tvi73W85NpqbRFxhMQWlq2_-D1d3PAp1KZ2Iej6alk4',\n    'CAMPING': '1cCaViGYU_027Pl3z2j2ThKCCj6wGlbxEtxZQzvrUfUQ',\n    'CASA COCINA': '1l-vEHPwAu0JcLDcbaxaarIr-XwQua-JlZlgtMpWYOno',\n    'COMESTIBLES': '1t3aYnWKok0G4A_GtwYSaZ007WUozflDkkqmCTptKCPY',\n    'COSMETICOS': '1KaWVLm1J-s13XXdjsYvFxEW1NynV1PirxVyPTTRPujI',",
+        "detail": "subir-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "creds",
+        "kind": 5,
+        "importPath": "subir-planilhas",
+        "description": "subir-planilhas",
+        "peekOfCode": "creds = Credentials.from_service_account_file('credentials-automacao-atendimento-zendesk.json', scopes=SCOPES)\nservice = build('sheets', 'v4', credentials=creds)\n# IDs das planilhas no Google Sheets para cada setor\nspreadsheet_ids = {\n    'BEBIDAS': '1Tvi73W85NpqbRFxhMQWlq2_-D1d3PAp1KZ2Iej6alk4',\n    'CAMPING': '1cCaViGYU_027Pl3z2j2ThKCCj6wGlbxEtxZQzvrUfUQ',\n    'CASA COCINA': '1l-vEHPwAu0JcLDcbaxaarIr-XwQua-JlZlgtMpWYOno',\n    'COMESTIBLES': '1t3aYnWKok0G4A_GtwYSaZ007WUozflDkkqmCTptKCPY',\n    'COSMETICOS': '1KaWVLm1J-s13XXdjsYvFxEW1NynV1PirxVyPTTRPujI',\n    'DEPORTES': '1Kzyy5ZOMuyXWKVtlchroEHsFRVz0TLEhQfwqpyvw5G0',",
+        "detail": "subir-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "service",
+        "kind": 5,
+        "importPath": "subir-planilhas",
+        "description": "subir-planilhas",
+        "peekOfCode": "service = build('sheets', 'v4', credentials=creds)\n# IDs das planilhas no Google Sheets para cada setor\nspreadsheet_ids = {\n    'BEBIDAS': '1Tvi73W85NpqbRFxhMQWlq2_-D1d3PAp1KZ2Iej6alk4',\n    'CAMPING': '1cCaViGYU_027Pl3z2j2ThKCCj6wGlbxEtxZQzvrUfUQ',\n    'CASA COCINA': '1l-vEHPwAu0JcLDcbaxaarIr-XwQua-JlZlgtMpWYOno',\n    'COMESTIBLES': '1t3aYnWKok0G4A_GtwYSaZ007WUozflDkkqmCTptKCPY',\n    'COSMETICOS': '1KaWVLm1J-s13XXdjsYvFxEW1NynV1PirxVyPTTRPujI',\n    'DEPORTES': '1Kzyy5ZOMuyXWKVtlchroEHsFRVz0TLEhQfwqpyvw5G0',\n    'ELECTRONICA': '14KnaCb9D9SeCU-imtKk36IUaTPC4slbHeDtQdpv8HvI',",
+        "detail": "subir-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "spreadsheet_ids",
+        "kind": 5,
+        "importPath": "subir-planilhas",
+        "description": "subir-planilhas",
+        "peekOfCode": "spreadsheet_ids = {\n    'BEBIDAS': '1Tvi73W85NpqbRFxhMQWlq2_-D1d3PAp1KZ2Iej6alk4',\n    'CAMPING': '1cCaViGYU_027Pl3z2j2ThKCCj6wGlbxEtxZQzvrUfUQ',\n    'CASA COCINA': '1l-vEHPwAu0JcLDcbaxaarIr-XwQua-JlZlgtMpWYOno',\n    'COMESTIBLES': '1t3aYnWKok0G4A_GtwYSaZ007WUozflDkkqmCTptKCPY',\n    'COSMETICOS': '1KaWVLm1J-s13XXdjsYvFxEW1NynV1PirxVyPTTRPujI',\n    'DEPORTES': '1Kzyy5ZOMuyXWKVtlchroEHsFRVz0TLEhQfwqpyvw5G0',\n    'ELECTRONICA': '14KnaCb9D9SeCU-imtKk36IUaTPC4slbHeDtQdpv8HvI',\n    'MODAS': '1drlVmNLKGP-oe6jIUkSecv29GF5fJoFUvnanqQ0yi60',\n    'NINOS': '1tsWjoz1wrTzF3eqrIIAMp4EpDkxqQ4XZBYarZfA8Qo4',",
+        "detail": "subir-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "diretorio",
+        "kind": 5,
+        "importPath": "subir-planilhas",
+        "description": "subir-planilhas",
+        "peekOfCode": "diretorio = \"./\"\n# Mapeamento de nomes de arquivos para setores no Google Sheets\narquivos_planilhas = {\n    'Bebidas.xlsx': 'BEBIDAS',\n    'Camping.xlsx': 'CAMPING',\n    'Casa Cocina.xlsx': 'CASA COCINA',\n    'Comestibles.xlsx': 'COMESTIBLES',\n    'Cosmeticos.xlsx': 'COSMETICOS',\n    'Deportes.xlsx': 'DEPORTES',\n    'Electronica.xlsx': 'ELECTRONICA',",
+        "detail": "subir-planilhas",
+        "documentation": {}
+    },
+    {
+        "label": "arquivos_planilhas",
+        "kind": 5,
+        "importPath": "subir-planilhas",
+        "description": "subir-planilhas",
+        "peekOfCode": "arquivos_planilhas = {\n    'Bebidas.xlsx': 'BEBIDAS',\n    'Camping.xlsx': 'CAMPING',\n    'Casa Cocina.xlsx': 'CASA COCINA',\n    'Comestibles.xlsx': 'COMESTIBLES',\n    'Cosmeticos.xlsx': 'COSMETICOS',\n    'Deportes.xlsx': 'DEPORTES',\n    'Electronica.xlsx': 'ELECTRONICA',\n    'Modas.xlsx': 'MODAS',\n    'Ninos.xlsx': 'NINOS',",
+        "detail": "subir-planilhas",
+        "documentation": {}
+    }
+]

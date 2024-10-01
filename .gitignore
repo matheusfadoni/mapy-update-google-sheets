@@ -1,0 +1,5 @@
+# Ignorar arquivo de credenciais
+credentials-automacao-atendimento-zendesk.json
+
+# Ignorar todos os arquivos .xlsx
+*.xlsx
