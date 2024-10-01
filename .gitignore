@@ -1,5 +1,6 @@
-# Ignorar arquivo de credenciais
+acesso-oracle.py
 credentials-automacao-atendimento-zendesk.json
-
-# Ignorar todos os arquivos .xlsx
 *.xlsx
+.vscode/
+__pycache__/
+produtos.txt

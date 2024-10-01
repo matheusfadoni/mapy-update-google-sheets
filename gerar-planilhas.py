@@ -3,11 +3,7 @@ import pandas as pd
 import re
 
 # Configurações de conexão ao Oracle
-db_host = "192.168.1.243"
-db_port = 1521
-db_user = "users3"
-db_pass = "2022"
-db_database = "mapy"
+from acesso_oracle import db_host, db_port, db_user, db_pass, db_database
 
 # String de conexão
 dsn = cx_Oracle.makedsn(db_host, db_port, service_name=db_database)
