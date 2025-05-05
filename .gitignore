@@ -3,4 +3,4 @@ credentials-automacao-atendimento-zendesk.json
 *.xlsx
 .vscode/
 __pycache__/
-produtos.txt
+*.log
