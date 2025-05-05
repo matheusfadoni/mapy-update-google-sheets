@@ -1,0 +1,2 @@
+0 8 * * * /usr/local/bin/python3 /app/main-gerar-alterar-planilha.py
+0 14 * * * /usr/local/bin/python3 /app/main-gerar-alterar-planilha.py
