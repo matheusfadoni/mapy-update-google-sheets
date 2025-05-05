@@ -6,12 +6,12 @@ from googleapiclient.errors import HttpError
 # Configuración de la API
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 creds = Credentials.from_service_account_file(
-    '/app/credentials-automacao-atendimento-zendesk.json',
+    '/app/credentials-google.json',
     scopes=SCOPES
 )
 service = build('sheets', 'v4', credentials=creds)
 
-spreadsheet_id = '1sbQasVfVH2cEhUHL4mNRATKOsveEKtmlgICK9C5Ku2w'
+spreadsheet_id = 'id-da-planilha-encontrado-no-link'
 sheet_name = 'Hoja 1'
 range_leitura = f"{sheet_name}!A2:C"
 

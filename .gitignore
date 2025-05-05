@@ -1,5 +1,4 @@
-acesso-oracle.py
-credentials-automacao-atendimento-zendesk.json
+credentials-google.json
 *.xlsx
 .vscode/
 __pycache__/
