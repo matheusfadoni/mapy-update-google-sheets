@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3.8
+#!/usr/local/bin/python3
 
 import os
 import sys
@@ -32,15 +32,15 @@ def executar_arquivo(script):
 
 # Ordem de execução dos scripts
 scripts_para_executar = [
-    "gerar-planilha.py",      # Primeiro gera a planilha
-    "atualizar-planilha.py"   # Depois atualiza no Google Sheets
+    "gerar-planilha.py",      # Gera a planilha
+    "atualizar-planilha.py",   # Atualiza no Google Sheets do Mapy (para tradução de produtos em Português)
+    "atualizar-planilha-neuralgenius.py"  # Atualiza no Google Sheets da NeuralGenius
 ]
 
 # Executar os scripts na ordem
 for script in scripts_para_executar:
     executar_arquivo(script)
 
-print("_________________________")
 print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] main-gerar-alterar-planilha.py executado\n")
-
+print("_________________________")
 log_file.close()
