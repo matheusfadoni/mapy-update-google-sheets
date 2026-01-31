@@ -3,3 +3,4 @@ credentials-google.json
 .vscode/
 __pycache__/
 *.log
+*.json
