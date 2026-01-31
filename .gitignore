@@ -1,4 +1,4 @@
-credentials-google.json
+*.zip
 *.xlsx
 .vscode/
 __pycache__/
