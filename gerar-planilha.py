@@ -3,11 +3,11 @@ import pandas as pd
 import re
 
 # Conexão Oracle
-db_host = "ip-do-servidor"
-db_port = 12345
-db_user = "user"
-db_pass = "password"
-db_database = "db_name"
+db_host = "192.168.1.243"
+db_port = 1521
+db_user = "users3"
+db_pass = "2022"
+db_database = "mapy"
 
 # Montar manualmente o DSN
 dsn = f"(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST={db_host})(PORT={db_port}))(CONNECT_DATA=(SERVICE_NAME={db_database})))"
@@ -56,5 +56,5 @@ for cat in categorias:
 df_total.drop_duplicates(subset='COD_ARTICULO', inplace=True)
 
 # Salva em uma única planilha
-df_total.to_excel("Produtos.xlsx", index=False)
+df_total.to_excel("/app/Produtos.xlsx", index=False)
 print("Planilha única 'Produtos.xlsx' gerada com sucesso.")

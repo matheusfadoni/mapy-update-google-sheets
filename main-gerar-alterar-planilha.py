@@ -5,6 +5,7 @@ import sys
 import subprocess
 from datetime import datetime
 import time
+import traceback
 
 # Define timezone correto (-03:00)
 os.environ['TZ'] = 'America/Asuncion'
@@ -21,14 +22,26 @@ print(f"\n[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] Início da execução
 # Diretório onde estão os scripts
 diretorio = "/app"
 
-# Função para executar um arquivo Python
+# Remove o arquivo antigo antes de gerar um novo
+produtos_path = os.path.join(diretorio, "Produtos.xlsx")
+try:
+    os.remove(produtos_path)
+    print(f"Removido arquivo antigo: {produtos_path}")
+except FileNotFoundError:
+    print(f"Nenhum arquivo antigo para remover: {produtos_path}")
+
+# Função para executar arquivo Python
 def executar_arquivo(script):
     try:
         print(f"Executando: {script}")
-        subprocess.run(["python3", os.path.join(diretorio, script)], check=True)
+        subprocess.run(["python3", os.path.join(diretorio, script)], check=True, cwd=diretorio)
         print(f"{script} executado com sucesso.\n")
+        return True
     except subprocess.CalledProcessError as e:
         print(f"Erro ao executar {script}: {e}")
+        print(f"Detalhes: script={script} returncode={e.returncode} cmd={e.cmd}")
+        traceback.print_exc()
+        return False
 
 # Ordem de execução dos scripts
 scripts_para_executar = [
@@ -38,9 +51,15 @@ scripts_para_executar = [
 ]
 
 # Executar os scripts na ordem
+falhas = []
 for script in scripts_para_executar:
-    executar_arquivo(script)
+    if not executar_arquivo(script):
+        falhas.append(script)
 
-print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] main-gerar-alterar-planilha.py executado\n")
+if falhas:
+    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] main-gerar-alterar-planilha.py finalizado COM ERROS")
+    print(f"Scripts com erro: {', '.join(falhas)}\n")
+else:
+    print(f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] main-gerar-alterar-planilha.py executado\n")
 print("_________________________")
 log_file.close()

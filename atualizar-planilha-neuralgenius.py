@@ -1,4 +1,6 @@
 import pandas as pd
+import sys
+import traceback
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -107,5 +109,11 @@ try:
 
 except HttpError as e:
     print(f"Error Google API: {e}")
+    print("Detalhes completos do erro:")
+    traceback.print_exc()
+    sys.exit(1)
 except Exception as e:
     print(f"Error inesperado: {e}")
+    print("Detalhes completos do erro:")
+    traceback.print_exc()
+    sys.exit(1)
